@@ -1,0 +1,966 @@
+\documentclass[a4paper, 12pt, oneside]{article}
+\usepackage[numbers]{natbib}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathabx}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+
+\usepackage{graphicx}
+
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\begin{document}
+
+\setlength\parindent{0pt}
+\renewcommand{\baselinestretch}{1.35}
+
+\begin{titlepage}
+
+\begin{center}
+\begin{large}
+UNIVERSITATEA ``ALEXANDRU IOAN CUZA" DIN IA\c SI
+\end{large}
+
+\vspace{4mm}
+
+\begin{huge}
+FACULTATEA DE INFORMATIC\u A
+\end{huge}
+\end{center}
+
+\vspace{35mm}
+
+\begin{center}
+\includegraphics[width=0.5\textwidth]{img/fii.png}
+\end{center}
+ 
+\vspace{15mm}
+
+\begin{center}
+\begin{Large}
+LUCRARE DE LICEN\c T\u A
+\end{Large}
+\\
+\
+\\
+\
+\
+\begin{LARGE}
+\textbf{Comparision queries over encrypted data \\using multilinear maps}
+\end{LARGE}
+
+\vspace{10mm}
+
+\begin{large}
+propus\u a de
+\end{large}
+
+\vspace{10mm}
+
+\begin{LARGE}
+Ioni\c t\u a Alexandru
+\end{LARGE}
+
+\vspace{25mm}
+
+\textbf{Coordonator \c stiin\c tific:}\\
+Prof. dr. Ferucio Lauren\c tiu \c Tiplea\\
+
+\end{center}
+
+\vfill
+
+\begin{center}
+\textbf{Sesiunea:} iulie 2018
+\end{center}
+
+\end{titlepage}
+\newpage
+
+\title{Comparision queries over encrypted data \\using multilinear maps}
+
+\bigskip
+\author{Alexandru Ioni\c t\u a}
+
+\maketitle
+
+\pagebreak
+
+
+
+\begin{flushright}
+Avizat,\\
+\^Indrum\u ator Lucrare de Licen\c t\u a,\\
+Prof. dr. Ferucio Lauren\c tiu \c Tiplea\\
+Data 28.06.2018 \hspace{0.4cm} Semn\u atura \rule{3.5cm}{0.4pt}
+\end{flushright}
+
+\begin{center}
+\textbf{DECLARA\c TIA privind originalitatea con\c tinutului lucr\u arii de licen\c t\u a}
+\end{center}
+
+
+Subsemnatul IONI\c T\u A ALEXANDRU, cu domiciliu \^in or. IA\c SI, ROM\^ ANIA, n\u ascut la data de 11.06.1996, identificat prin CNP 1960611226767, absolvent a Universit\u a\c tii ,,Alexandru Ioan Cuza" din Ia\c si, Facultatea de Informatic\u a, specializarea Informatic\u a, promo\c tia 2015-2018, declar pe propria r\u aspundere, cunosc\^and consecin\c tele falsului \^in declara\c tii \^in sensul art. 326 din Noul Cod Penal \c si dispozi\c tiile Legii Educa\c tiei Na\c tionale nr. 1/2011 art.143 al. 4 \c si 5 referitoare la plagiat, c\u a lucrarea de licen\c t\u a cu titlul:\\ \textbf{\textit{Comparision queries over encrypted data using multilinear maps}}, elaborat\u a sub \^indrumarea dl. Prof. dr. Ferucio Lauren\c tiu \c Tiplea, pe care urmeaz\u a s\u a o sus\c tin \^in fa\c ta comisiei este original\u a, \^imi apar\c tine \c si \^imi asum con\c tinutul s\u au \^in \^intregime. De asemenea, declar c\u a sunt de acord ca lucrarea mea de licen\c t\u a s\u a fie verificat\u a prin orice modalitate legal\u a pentru confirmarea originalit\u a\c tii, consim\c tind inclusiv la introducerea con\c tinutului s\u au \^intr-o baz\u a de date \^in acest scop. Am luat la cuno\c stin\c t\u a despre faptul c\u a este interzis\u a comercializarea de lucr\u ari \c stiin\c tifice \^in vederea facilit\u arii falsific\u arii de c\u atre cump\u ar\u ator a calit\u a\c tii de autor al unei lucr\u ari de licen\c t\u a, de diploma sau de diserta\c tie \c si \^in acest sens, declar pe proprie r\u aspundere c\u a lucrarea de fa\c t\u a nu a fost copiat\u a, ci reprezint\u a rodul cercet\u arii pe care am \^intreprins-o.
+
+\bigskip
+\noindent Data azi,
+
+\noindent 28.06.2018
+
+\begin{flushright}
+  Ioni\c t\u a Alexandru
+  
+  \rule{3.5cm}{0.4pt}
+\end{flushright}
+
+\newpage
+\begin{center}
+DECLARA\c TIE DE CONSIM\c T\u AMÂNT
+\end{center}
+
+\bigskip
+
+\indent
+\par Prin prezenta declar c\u a sunt de acord ca Lucrarea de licen\c t{\u a} cu titlul "Comparision queries over encrypted data using multilinear maps", codul surs\u a al programelor \c si celelalte con\c tinuturi (grafice, multimedia, date de test
+etc.) care înso\c tesc aceast\u a lucrare s\u a fie utilizate în cadrul Facult\u a\c tii de Informatic\u a.
+De asemenea, sunt de acord ca Facultatea de Informatic\u a de la Universitatea "Alexandru Ioan
+Cuza" Ia\c si s\u a utilizeze, modifice, reproduc\u a \c si s\u a distribuie în scopuri necomerciale
+programele-calculator, format executabil \c si surs\u a, realizate de mine în cadrul prezentei
+lucr\u ari de licen\c t\u a.
+
+\bigskip
+\noindent Ia\c si,
+
+\noindent 28.06.2018
+
+\begin{flushright}
+  Ioni\c t\u a Alexandru
+  
+  \rule{3.5cm}{0.4pt}
+\end{flushright}
+
+\newpage
+%\begin{abstract}
+%I construct a private-key system that supports comparision ($x \leq a$) on encrypted data with logarithmic cyphertext size, using a multilinear map over a goup of composite order.
+
+%\end{abstract}
+\tableofcontents
+\clearpage
+
+\section{Introduction}
+\subsection{Problem description}
+
+In our days, people value more and more their internet privacy. We will give a few examples, to illustrate the need of Searchable Encryption schemes.
+
+Let's take an e-mail server. That the database of such e-mail server should be encrypted in order to respect it's users privacy, such that no one except the user will be able to read information from there. However, data leakage may happen when the user searches for e-mails containing certain phrases. That is why we notice the need of a model that prevents such leakage. An ideal scheme will encrypt the queries as well, and answer them without decrypting them.
+
+\bigskip
+Another example could be a database which is distributed in a cloud server. Users may store sensitive data in the cloud, and may not trust the cloud server. Which is why a encrypted database will protect the user's privacy. 
+
+\bigskip
+In computer science, a searchable encryption model refers to a system that can perform encrypted queries over encrypted data. The main goal is not to leak any information about the queries or the data, while performing queries. Thus the answer of a query is a collection of cyphertexts. This operation is often realised returning cyphertexts which match a certain token, generated for that specific query.
+
+\bigskip
+
+The most trivial query is finding elements in the cryptotext equal to some value. The query must be hidden (encrypted) such that the value that need to be found remains unkown for public users. 
+
+
+More complex queries are comparison queries (find $x$, such that $x \leq e$), or subset queries (given a set $S$, find all $x$ such that $x \in S$).
+These queries can be further complicated by adding conjunctions or disjunctions to them (e.g given $e$, $S$, find $x$ such that $x \in S$ and $x \geq e$).
+
+
+\subsection{Related Work}
+
+We will present here some \textit{Searchable encryption} systems, which drew our attention during our research. 
+
+\bigskip
+	One of the first \textit{SE} schemes was proposed by Dawn Xiaodong Song, David Wagner and Adrian Perrig in \textit{Practical Techniques for Searches on Encrypted Data} \cite{SoWP}. It is a proven secure cryptographic scheme for searching over encrypted data without leaking information about the queries. Their approach has a form of probabilistic search: If searching for a word \textit{W}, the scheme will return all positions where \textit{W} occurs, as well as some possible wrong matches. The user will be able to eliminate the false results when decrypting the results he recieved.
+	
+	Their scheme uses a stream cipher to encrypt the plaintext. Then, the queries are encrypted in a similar manner, and for searching some word in the cyphertext, the algorithm checks if the xor value between the a cyphertext word and the	encrypted query matches a certain form. In the end, it returns a set of positions (and/or cyphertexts) where the match was found. 
+	
+	For a given plain text of size $n$ heir system works in $O(n)$ time for both encryption and query, and almost no additional space is used for ecryption. However, in their approach every word has a fixed size length, which require a padding for supporting variable length words. 
+	
+	Their scheme does not provide support for other types of queries, like subset or comparison. However, it does support boolean operation on queries (e.g. search for $W$ and $W'$, $W$ or $W'$), proximity queries ($W$ near $W'$) and phrase search ($W$ immediately preceeds $W'$).
+
+
+\bigskip
+Another very interesting system is presented by Boneh, Salai and Waters in \textit{Conjunctive, Subset, and Range Queries on Encrypted Data} \cite{bowa}. They describe a complex SE public-key system which supports all the queries described in the title of the work.
+
+	Their system, called \textit{Hidden Vector Encryption} (or, shortly, \textit{HVE}) is based on bilinear maps of composite order. Initially, they describe the model for euality queris, and then they extend it to comparison and subset queries. 
+	
+	The overall complexity of their scheme is described in th table below:
+\begin{center}
+ \begin{tabular}{|c|c|c|} 
+ \hline
+  Operation & Cyphertext Size & Token Size \\ [0.5ex] 
+ \hline\hline
+ Equality ($x = a$) & $O(N)$ & $O(N)$ \\ 
+ \hline
+ Comparison ($x > a$) & $O(N)$ & $O(N)$\\ [1ex] 
+ \hline
+ Subset ($x \in A$) & $O(N)$ & $O(N)$\\ [1ex] 
+ \hline
+\end{tabular}
+\\
+\end{center}
+
+For equality and comparison queries, there are better results, but the big improvement of HVE is that it can be extended to support more complex queries, based on conjunctions. Their final result on such queries are described in the table below:
+
+\begin{center}
+ \begin{tabular}{|c|c|c|} 
+ \hline
+  Operation & Cyphertext Size & Token Size \\ [0.5ex] 
+ \hline\hline
+ Equality conjunction ($(x_1 = a_1) \wedge ... \wedge (x_w = a_w)$) & $O(w)$ & $O(w)$ \\ 
+ \hline
+Comparison conjunction ($(x_1 \geq a_1) \wedge ... \wedge (x_w \geq a_w)$) & $O(wN)$ & $O(w)$ \\ 
+ \hline
+ Subset conjunction ($(x_1 \in A_1) \wedge ... \wedge (x_w \in A_w)$) & $O(wN)$ & $O(wN)$ \\ 
+ \hline
+\end{tabular}
+\\
+\end{center}
+
+	
+\bigskip
+
+In \cite{bowa}, Bonet et al reduced the searchable encryption comparison queries to public key broadcast linear encryption, and using the result from their previous work in \cite{traitor} they created an $O(\sqrt{N})$ size cyphertext scheme for comparison queries over encrypted data.
+	
+	%\bigskip 
+	%TODO
+	%
+	%4. Raluca Ada Popa? Sa prezeint ceva si despre sistemul ei?
+%%
+%TODO 
+
+
+\subsection{Our Contribution}
+
+This paper focuses on comparison queries over encrypted data. We have focused our research mostly on two systems: the \textit{Hidden Vector Encryption}, presented by Boneh and Waters in \cite{bowa} and \textit{Public Key Broadcast Linear Encryption}, presented by the same authors in \cite{traitor}. The transition from \textit{Searchable Encryption} to \textit{Broadcast Encryption} is made in \cite{bowa}.
+
+\bigskip
+This paper tries to improve the current space complexity of the comparison queries in current searchable encryption schemes. ($O(\sqrt{N})$ achived by Boneh and Waters in \cite{bowa} and \cite{traitor}).
+Based on the \textit{Public Key Broadcast Linear Encryption} we have developed a new system that approaches the same problem. Our system comes with a big improvement in the complexity (achieving $O(log(N))$ space and $O(log^2(N))$ time complexity), but it has also a drawback: It is using multilinear maps, for which there isn't yet known a secure implementation model.
+
+
+
+\subsection{Paper Structure}
+This paper is structured as follows: 
+
+\bigskip
+In \textit{Section 1}, we familiarize the reader with the context of our work. We establish the problems that we attempt to solve and their origin from real-life problems. 
+
+\bigskip
+In \textit{Section 2}, we will introduce a few theoretical notions required to understand our model: cyclic groups (2.1), bilinear and multilinear maps (2.3), Difiie-Hellman Key-Sharing Protocol(2.4), as well as general primitives in \textit{Searchable Encryption}(2.4) and \textit{Public Key Broadcast Encryption Schemes}(2.5). 
+
+\bigskip
+In \textit{Section 3} we describe our contribution: The scheme and how it developed until its final form, correctness and security proofs. In \textit{Section 3.8} we describe some improvements and additions that can be made to our model in further works.
+
+\bigskip
+In \textit{Section 4} we describe the conclusions we made after our research.
+
+\newpage
+\section{Notations and Definitions}
+
+In this section we will introduce a series of notations and primitieves which will ease the understanding of the schemes presented in the following sections.
+
+Our construction relies heavily on multilinear maps. Because of this, we need to present basic theory related to pairing based cryptography (bilinear and multilinear maps).
+
+Also, we used a similar method to the Diffie-Hellman Key sharing protocol, to share secret keys in our construction, that's why we choosed to present this protocol in this section.
+
+\subsection{Notations}
+
+We will refer to a \textit{Public Key Broadcast Encryption System} as PKBLE System, and a \textit{Searchable Encryption} system as a SE system.\\
+
+
+In this paper we will use $N$ for denoting the number of users in a \textit{PKBLE} system, or for the index space size in a \textit{Searchable encryption} system.
+$n$ will represent the number of bits of $N$ ($n = log(N)$).
+
+	
+
+\subsection{Cyclic Groups}
+
+A tuple $(G, \cdot)$ formed by a nonempty set $G$, and an operation $\cdot$ is a group iff it respects the following properties:
+
+\begin{itemize}
+
+\item \textbf{Closure} $\forall x, y \in G$, $x \cdot y \in G$.
+\item \textbf{Associativity} $\forall x, y, z \in G$, $(x\cdot y)\cdot z = x\cdot (y\cdot z) $.
+
+\item \textbf{Identity Element} $\exists e$ such that $ e\cdot x = x\cdot e, \forall x \in G$.
+
+\item \textbf{Inverse Element} $\forall x \in G, \exists y = x^{-1} \in G$ such that $ x\cdot y =  y\cdot x = e$.
+
+\end{itemize}
+
+If, in addition the following property holds:
+
+\begin{itemize}
+
+\item \textbf{Comutativity} $\forall x, y \in G$, $x\cdot y = y\cdot x$ holds.
+
+\end{itemize}
+ then the group is called \textit{abelian} or \textit{comutative}.\\
+ 
+ We will further use exponential notation for repeated multiplications: 
+ $x \cdot x = x^2$, $x \cdot x \cdot x = x^3$, $x \cdot x \cdots x = x^n$.
+
+\bigskip
+A group is called cyclic, iff $\exists g \in G$, such that the repeated exponentiation of $g$ generates the whole group (we will name it \textit{generator} for the group G).
+
+\bigskip
+The order of an element $a \in G$ (noted as $ord_G(a)$), represents the smallest positive number such that $a^{ord_G(a)} = a$. The order of the group (noted as $ord(G)$) is the size of it (the number of distinct elements). Thus, if for some element $a$, $ord_G(a) = ord(G)$, then $a$ is a generator for $G$.
+
+\bigskip
+
+An important property of the cyclic groups is that each element $a \in G$ can be expressed as $a = g^i$, where $g$ is a generator for $G$.
+
+\subsection{Pairing-based Cryptography}
+This subsection describes the basic elements used in pairing-based Cryptography, which are bilinear and multilinear maps.
+
+
+\subsubsection{Bilinear maps}
+Let $G_1$, $G_2$ be two multiplicative cyclic groups of order $p$, and $G_T$ another multiplicative cyclic group of order $p$.\\
+
+A pairing is a function $e: G_1 \times G_2 \rightarrow G_T$, which satisfies the properties:
+
+\begin{itemize}
+
+\item \textbf{Bilinearity}: $ \forall a, b \in \mathbb{Z}, \forall g_1 \in G_1, \forall g_2 \in G_2 $ : $ e(g_1^a, g_2^b) = e(g_1, g_2)^{ab}$
+\item \textbf{Non-Degenerate}: $e \neq 1$
+\item \textbf{Computability}: $e$ can be computed efficient.
+
+\end{itemize}
+
+From the bilinearity property, we can deduce the following equalities which can be usefull:
+\begin{enumerate}
+
+
+\item $e(g_1, g_2) = g_T$, where $g_T$ is generator in $G_T$.
+\item $e(g_1^a, g_2) = e(g_1, g_2^a) = e(g_1, g_2)^a$
+\item $e(g_1^q, g_2) = e(g_1, g_2^q) = e(g_1, g_2)^q = e(g_1, g_2)^0 = 1$.
+
+\item $e(g_1^ag_1^b, g_2) = e(g_1^a, g_2)\cdot e(g_1^b, g_2) = e(g_1, g_2)^a \cdot e(g_1, g_2)^b$
+
+\end{enumerate}
+
+
+The bilinear maps described above has a prime order $p$. There also exist bilinear maps with composite order. That is, order of $G_T$ is a composite number n.
+
+
+\subsubsection{Multilinear maps}
+One extension of the bilinear maps are $n-multilinear$ maps, which can be defined as follows:
+
+
+Let $G_1, G_2, ..., G_n$ be $n$ multiplicative cyclic groups of order $p_1, p_2, ...p_n$, and $G_T$ another multiplicative cyclic group of order $T$. Then we can say that $e : G_1 \times G_2 \times ... \times G_n \rightarrow G_T$ is a \textit{n-multilinear map} if:
+
+\begin{itemize}
+
+\item \textbf{Multilinearity}: $ \forall a_1, a_2... a_n \in \mathbb{Z}, \forall g_1 \in G_1, \forall g_2 \in G_2  ... \forall g_n \in G_n$ we have that $ e(g_1^{a_1}, g_2^{a_2}, ..., g_n^{a_n}) = e(g_1, g_2, ..g_n)^{a_1a_2...a_n}$
+\item \textbf{Non-Degenerate}: $e \neq 1$
+\item \textbf{Computability}: $e$ can be computed efficient.
+
+\end{itemize}
+
+As with bilinear maps, rom the bilinearity property, we can deduce the following equalities which can be usefull:
+\begin{enumerate}
+
+
+\item $e(g_1, g_2, .., g_n) = g_T$, where $g_T$ is generator in $G_T$.
+\item $e(g_1^a, g_2,..., g_n) = e(g_1, g_2^a, ..., g_n) = e(g_1, g_2, ..., g_n)^a$
+\item $e(g_1^p, g_2, ..., g_n) = e(g_1, g_2, .., g_n)^p = e(g_1, g_2)^0 = 1$. (iff $ord(G_T) = p$)
+
+\item $e(g_1^ag_1^b, g_2, ...., g_n) = e(g_1^a, g_2, ...g_n)\cdot e(g_1^b, g_2, ..., g_n) = e(g_1, g_2, ...,g_n)^a \cdot e(g_1, g_2,...,g_n)^b$
+
+\end{enumerate}
+
+
+\subsection{Diffie-Hellman key sharing}
+
+The Diffie Hellman Key sharing protocol is a secure way for two users to exchange keys over a public (unsecure) channel. It works in the following way:
+\bigskip
+
+Suppose that Alice and Bob want to share with each other a secret key, but they don't have a secure channel to communicate. They must not, under this condition, send the key over the channel. The Diffie-Hellman Key sharing protocol suggests the following solution:
+\begin{itemize}
+
+\item They initially agree to use a modulus $p$, and a base $g$.
+\item Alice thinks at a random integer $a$, and Bob at a random integer $b$.
+\item Alice makes public $g^a$, and Bob $g^b$.
+\item Now they both can compute $g^{ab} = (g^a)^b = (g^b)^a$, which will be their shared key.
+
+\end{itemize}
+
+There is a simple extension of this protocol, using bilinear maps, which extends the number of participants to 3:
+
+We have 3 users - A, B and C, which want to share a key through an unsecure channel:
+
+\begin{itemize}
+
+\item They initially agree on $G, G_1, G_2$, three multiplicative cyclic groups and a bilinear map $e : G_1 \times G_2 \rightarrow G$. Also, they set 3 generators of this groups: $g\in G, g_1 \in G_1, g_2 \in G_2$.
+\item They pick then 3 (secret) random integers - $a, b, c$.
+\item A makes public $g_1^a$, $g_2^a$, B $g_1^b$, $g_2^b$ and C $g_1^c$, $g_2^c$.
+\item Now they both can compute $e(g_1, g_2)^{abc}$, which will be their shared key. (A computes $e(g_1^b, g_2^c)^a = e(g_1, g_2)^{bca}$, B computes $e(g_1^c, g_2^a)^b = e(g_1, g_2)^{cab}$, and C computes $e(g_1^a, g_2^b)^c = e(g_1, g_2)^{abc}$)
+
+\end{itemize}
+
+We can observe that, if we use a multilinear map instead of a bilinear maps, we can easaly extend the protocol for more users: A $n$-multilinear map will be an efficient way for sharing a key between $n+1$ users.
+
+\subsection{Searchable encryption scheme structure}
+We will begin by describing some general notations we will be using further:
+
+As described in [bowa], a general Seachable encryption scheme will consist of the following:\\
+
+\begin{itemize}
+\item $\mathbf{Setup_{SE}}()$ A probabilistic algorithm that outputs a public key $PK$ and a secret key $SK$.
+\item $\mathbf{Encrypt_{SE}}(PK, I, M)$ An algorithm that encripts the pair (I, M) using the public key $PK$. Here $I$ represents the searchable field, called \textbf{index}, and M is the message. It returns a cyphertext \textbf{C}.
+\item $\mathbf{genToken_{SE}}(SK, P)$ Takes as input a secret key SK and a description of a predicate P. It outputs a token \textbf{$TK_P$}, which will be used in decryption.
+\item $\mathbf{Query_{SE}}(TK_P)$ The decryption algorithm recieves a token $TK_P$ (for some predicate P) and returns a set of cyphertexts that match the token.
+\end{itemize}
+\bigskip
+%%%%%%%The SE scheme must satisfy the following \textit{correctness} property:
+%%%%%%
+%
+%
+%TODO
+%
+%
+%
+\subsection{Broadcasting Encryption}
+
+	Briefly, broadcasting encryption represents an ecnrypting scheme for a number of users such that the ecnrypted text can be decrypted only by a certain subset of the users. In this work, is of interest only a scheme that ranks the users, allows the cyphertext to be decrypted by higher ranked users than the one that encrypted the plaintext. In this way, we will use the broadcast ecryption in our scheme for comparision queries, using the reduction to a SE-system with comparison queries, as shown in \textit{Section 3.2}.
+
+\bigskip
+
+In \cite{bowa}, the PKBLE system is presented as follows:
+
+\bigskip
+
+
+\textit{$\mathbf{Setup_{PKBLE}(N, \lambda)}$} 
+A probabilistic algorithm that takes as input N , the number of users in the
+system, and a security parameter $\lambda$. The algorithm runs in polynomial time in $\lambda$ and outputs
+a public key PK and private keys $SK_1 , . . . , SK_N$ , where $SK_u$ is given to user $u$.
+
+\bigskip
+\textit{$\mathbf{Encrypt_{PKBLE}(PK, i, M )}$} 
+Takes as input a public key $PK$, an integer $i$ satisfying $1 \leq i \leq N +1$, and a message $M$. It outputs a ciphertext $C$. This ciphertext is intended for users $\{i, i+1, . . . , N\}$.
+
+\bigskip
+\textit{$\mathbf{Decrypt_{PKBLE}(j, SK_j , C)}$} 
+ Takes as input the private key $SK_j$ for user $j$ and a ciphertext $C$. The algorithm outputs a message $M$ or $\perp$.
+
+\bigskip
+\textbf{Correctness}
+
+The system must satisfy the following \textit{correctness} property: 
+$\forall i, j \in \{1, . . . , N + 1\} $(where $j \leq N$ ), and all messages $M$ :
+
+
+\[Let 
+\begin{cases}
+(PK, (SK 1 , . . . , SK N )) \leftarrow Setup_{PKLBE}(N, \lambda)\\
+C \leftarrow Encrypt_{PKLBE} (PK, i, M )
+\end{cases}
+\]
+
+
+If $j \geq i$ then $Decrypt_{PKLBE}(j, SK_j , C) = M$.
+
+\bigskip
+
+\textbf{Security}.
+
+
+ We define security of an PKLBE system using two games. The first game is a message
+hiding game and says that a ciphertext created using index $i = N + 1$ is unreadable by anyone.
+
+The second game is an index hiding game and captures the intuition that a broadcast ciphertext created using index i reveals no non-trivial information about i. We will consider all these games for a fixed number of users, $N$.
+
+\bigskip
+\textbf{Game 1 - Message Hiding}.
+ 
+The first game, called the \textit{Message Hiding Game} says that an adversary cannot break semantic security when encrypting using index $i = N + 1$. The game proceeds as follows:
+\begin{itemize}
+
+\item \textbf{Setup} The challenger runs the Setup PKLBE algorithm and gives the adversary PK and all
+secret keys $\{SK_1 , . . . , SK_N \}$.
+
+\item \textbf{Challenge} The adversary outputs two equal length messages $M_0$ , $M_1$ . The challenger flips a
+R
+coin $\beta \in \{0, 1\}$ and sets $C \leftarrow Encrypt_{PKLBE}(PK, N + 1, M_{\beta})$. The challenger gives C to the adversary.
+\item \textbf{Guess} The adversary returns a guess $\beta' \in \{0, 1\}$ of $\beta$.
+
+
+We define the advantage of adversary A in winning the game as:
+\[MH Adv_A =\vert Pr[\beta'  = \beta] - 1/2\vert\]
+
+\end{itemize}
+\textbf{Game 2 - Index Hiding}.
+
+ The second game, called the Index Hiding Game says that an adversary cannot distinguish between an encryption to index i and one to index i + 1 without the key SK i . The game takes as input a parameter $i \in \{1, . . . , N\}$ which is given to both the challenger and the adversary.
+ 
+The game proceeds as follows:
+\begin{itemize}
+
+\item \textbf{Setup} The challenger runs the $Setup_{PKLBE}$ algorithm and gives the adversary PK and the set of private keys $\{SK_j$ with $j \neq i\}$.
+
+
+\item \textbf{Challenge} The adversary outputs a message M. The challenger flips a coin 
+$\beta \in \{0, 1\}$ and R
+computes $C \leftarrow Encrypt_{PKLBE}(PK, i + \beta, M)$. The challenger returns C to the adversary.
+
+\item \textbf{Guess} The adversary returns a guess $\beta' \in \{0, 1\}$ of $\beta$.
+
+
+We define the advantage of adversary A as the quantity:
+\[IH Adv_A[i] = \vert Pr[\beta' \neq \beta] - 1/2 \vert\]
+
+In words, the game captures the fact that even if all users other than $i$ collude they cannot distinguish whether $i$ or $i + 1$ was used to create a ciphertext C.
+
+\end{itemize}
+With this games we define a secure PKLBE as follows:
+
+(Definition D.1 in \cite{bowa}) 
+
+We say that an $N$-user public-PLBE system is secure if for all polynomial time
+adversaries A we have that MH $Adv_A$ and IH $Adv_A [i]$ for $i = \{1, . . . , N\}$ , are negligible functions of $\lambda$.
+
+
+\newpage
+\section{Scheme}
+
+Our system is based on the \textit{PKBLE} system described by Boneh and Waters in /cite{traitor}. 
+
+\subsection{Reducind PKBLE to SE}
+
+To ease the understanding of our system, we will present actually present in this work a $PKBLE$-system. Using this model, we can create a $SE$-system which supports comparison queris, with the results from Bonet and Waters in \cite{bowa} (The result can be found in \textit{Appendix C} of the work): They have showed that any secure $PKBLE$-sustem gives a secure $SE$-system as follows:
+
+\begin{itemize}
+
+\item $\mathbf{Setup}(\lambda)$ Run $Setup_{PKLBE} (n, \lambda)$ to obtain a public key $PK$ and $n$ secret keys $(SK_1 , . . . , SK_n)$.
+Output $PK$ and $SK = (SK_1 , . . . , SK_n)$.
+
+\item $\mathbf{Encrypt}(PK, s, M )$ where $s \in \{1, . . . , n\}$. 
+Output $C \leftarrow Encrypt_{PKLBE}(PK, s, M )$. 
+
+\item $\mathbf{GenToken}(SK, \langle P \rangle)$ A predicate P is a number $i \in \{1, . . . , n\}$. Output $TK \leftarrow (i, SK_i)$.
+
+\item $\mathbf{Query}(TK, C)$ Let $TK = (i, SK_i)$. Run $Decrypt_{PKLBE}(i, SK_i , C)$.
+
+\end{itemize}
+
+Using a public-PLBE we thus obtain a $SE$-system. Security follows easily from the properties of public-PLBE. 
+
+\textit{Theorem C.1} in \cite{bowa} states that:
+
+The $/phi(n,1)$ -searchable encryption system is secure assuming the underlying public-
+PLBE is secure.
+
+
+\subsection{Our Construction}
+
+Our construction will try to make a public broadcast ecryption scheme using $O(log(N))$ cyphertext size. We will try to extend the scheme presented in \cite{traitor}, replacing the bilinear map with a multilinear map with $log_2(N)$ dimensions.\\
+
+We will have then the cyclic groups $G_1$ of order $p_1$, $G_2$ of order $p_2$, ..., $G_n$ of order $p_n$, and group $G_T$ of order $p_1p_2...p_n$, and the multilinear map $e : G_1 \times G_2 \times ... \times G_n \rightarrow G_T$.\\
+
+First, we want that the cyphertext generated by user $b$ = $(b_1b_2...b_n)$ to be decryptable by users $b'$, where $b' \geq b$. 
+Thus, we want to create a vector $k$ (depending on $b$ and $b'$ )such that $e(g^{k_1}, g^{k_2}...g^{k_n}) = 1 $ iff $b' \geq b$, otherwise $e(g^{k_1}, g^{k_2}...g^{k_n})$ has a random value. This will be the first step in our broadcast encryption scheme, because if we multiply $e(g^{k_1}, g^{k_2}...g^{k_n})$ by $M$ (the message we want to encrypt), we observe that $e(g^{k_1}, g^{k_2}...g^{k_n}) * M = M$ iff $b' \geq b$ (ie the user $b'$ must be able to decrypt the message $M$, encrypted by the user $b$).
+
+
+We will construct $k_i$ as bescribed in the table below:
+
+\begin{center}
+ \begin{tabular}{|c || c c|} 
+ \hline
+  & $b_i = 1$ & $b_i = 0$\\ [0.5ex] 
+ \hline\hline
+ $b'_i = 1$ & $r_ip_i$ & $r_ip_ip_{i+1}...p_n$ \\ 
+ \hline
+ $b'_i = 0$ & $r_i$ & $r_ip_i$\\ [1ex] 
+ \hline
+\end{tabular}
+\\
+\end{center}
+
+It can be easily seen that it respects the above constraints.\\
+
+Now we need to mask the plaintext. We have done this using an approach similar to the Diffie-Hellman key sharing technique. We will multiply $M$ by some $e(g, g, g,..., g)^qK$, where $K$ is a secret key, generated in the setup function, and $q$ is a random number generated at each encryption. We then generate a vector of pairs:  
+
+\[ b_i = (b_{i,0}, b_{i,1}) \]
+
+	For user $U=\overline{u_1u_2...u_n}$, where $u_i \in \{0, 1\}$ ($\overline{u_1u_2...u_n}$ is the $base-2$ representation of $U$), we will compute 
+	$B_U = b_{1, u_1} + b_{2, u_2} + ... + b_{n, u_n}$. And then we generate a secret key for user $U$ as $sk_U = K\cdot B_U^{-1}$.
+	
+	\bigskip
+	In our final system, we combine the $b$ and $k$ vectors in a multilinear map, such that we obtain our desired result: The cryptotext resulted from user $u$ can be decrypted by user $u' \Leftrightarrow u' \geq u$.
+
+\subsection{Scheme description}
+The full description of the scheme is the following:
+\\
+
+
+
+\textit{$\mathbf{setup}_{PKBLE}(N)$:}
+
+
+Let N denote the number of users. (When reducing to searchable encryption we suppose that we want to index out databasse by some integer number in range $[1..N]$). We will use $n = log(N)$.
+
+
+The setup algorithm first generates $P = p_0 p_1  p_2 ... p_n $, where $p_0$, $p_1$ ... $p_n$ are $n+1$ random primes.
+It creates then an n-multilinear map $e$ over a group $G$ of composite order $P$, 
+$e : G^n \rightarrow G$. Let $g$ be a random generator of $G$.\\
+ 
+ 
+ Then, we generate some random exponents $r_1$, $r_2$, ... $r_n$ $\in \mathbb{Z}_P$ and $r'_1$, $r'_2$, ... $r'_n$ $\in \mathbb{Z}_P$. \\
+ 
+ And finally, we generate the secret keys for out $N = 2^n$ users.
+ We generate the following array of pairs of exponents:
+	$(b_{1, 0}, b_{1, 1}),  (b_{2, 0}, b_{2, 1}), ... (b_{n, 0}, b_{n, 1})$, and a general secret key $K$, which must be hidden from the users.
+	
+	For user $U=\overline{u_1u_2...u_n}$, where $u_i \in \{0, 1\}$ ($\overline{u_1u_2...u_n}$ is the $base-2$ representation of $U$), we will compute 
+	$B_U = b_{1, u_1} + b_{2, u_2} + ... + b_{n, u_n}$. 
+	
+	
+	The secret key $sk_U$ for user $U$ will then be $sk_U = K\cdot B_U^{-1}$.
+\linebreak
+
+\textit{$\mathbf{encrypt}_{PKBLE}(M, U)$}: User $U=\overline{u_1u_2...u_n}$(where $u_i \in \{0, 1\}$) wants to encrypt element $M$.\\ 
+
+First, we will compute the exponents $k$: $k_1$, $k_2$, .. $k_n$ $\in \mathbb{Z}_P \bigtimes \mathbb{Z}_P$ as follows:
+
+\begin{align*}
+k_i = (k_{i, 0}, \ k_{i, 1})=  \begin{cases} 
+      (r_ip_i,\ r_ip_ip_{i+1}...p_n) & u_i = 1 \\
+      (r'_i,\ r_ip_i) & u_i = 0 
+   \end{cases}
+\end{align*}
+   
+   Then, we a secret random array $a$: $a_1$, $a_2$ ... $a_n$, and a secret random security parameter $q$, which is invertible in $\mathbb{Z}_P$.
+   
+\bigskip
+We will compute 
+\[C = M\cdot e(g, g..., g)^{a_1+a_2+...+a_n} \cdot e(g, g..., g)^{qK}\]
+
+and the following vectors of pairs:
+
+\[ e_{i, u_i} = g^{k_{i, u_i}} \]
+\[ d_{i, u_i} = g^{k_{i, u_i}} g^{a_i} \]
+\[ f_{i, u_i} = g^{k_{i, u_i}} g^{qb_{i, u_i}} \]
+
+
+Return as output $(k, C, f, d)$.
+\bigskip
+
+\textit{$\mathbf{decrypt}_{PKBLE}(U, (k, C, f, d))$}:
+User $U$ wants to decrypt the message $(k, C, f, d)$. 
+For each bit $u_i$ of $U$, we will choose the appropriate value from $k, f$ and $d$ (as shown above). For simplicity, we will refer to it simply as $k_i = k_{i, u_i}$...\\
+
+
+And after that, two additional vector, D and F, are constructed as follows:
+\begin{align*}
+D_i = e(e_1, e_2, ..., e_{i-1}, d_i, e_{i+1}, ..., e_n)\\
+F_i = e(e_1, e_2, ..., e_{i-1}, f_i, e_{i+1}, ..., e_n)
+\end{align*}
+
+Then, compute \[B_i = e(e_1, e_2,..e_{i-1}, g, e_{i+1},..., e_n)\]
+
+\bigskip
+To decrypt, we need to compute the value \[C*\frac{B_1B_2...B_n}{D_1D_2...D_n}\left(\frac{B_1B_2...B_n}{F_1F_2...F_n}\right)^{sk_U}\] 
+
+\bigskip
+If the user is allowed to decrypt, he will obtain the message initially encrypted, $M$. Otherwise, he will recieve random bits of information.
+
+
+
+\subsection{Correctness and Security}
+
+To prove the security of our scheme, we will use the gams presented in \textit{Section 2.6}.
+
+\subsubsection{Correctness}
+
+We will say that our PKBLE system is correct iff it satisfied the correctness property enunciated in \textit{Section 2.6}. 
+
+
+\bigskip
+ User $U$ has encrypted a message $M$. We will prove that only a user $V \geq U$ can decrypt the message. 
+\\
+
+The decryption algorithm will compute 
+\[C*\frac{B_1B_2...B_n}{D_1D_2...D_n}\left( \frac{B_1B_2...B_n}{F_1F_2...F_n}\right)^{sk_U}\]
+
+First, let $K_p = \prod{k_i}$. We will then analyze the value $\frac{B_i}{D_i}$:
+
+
+\[\frac{B_i}{D_i} =
+\frac{e(g, g, ..., g)^{K_p/k_i}}{e(g, g..., g)^{K_p}e(g, g, ..., g)^{K_pa_i/k_i}} = 
+\frac{1}{e(g, g..., g)^{K_p}e(g, g, ..., g)^{a_i}}\]
+
+Similary, we get that: 
+\[\frac{B_i}{F_i} =
+\frac{e(g, g, ..., g)^{K_p/k_i}}{e(g, g..., g)^{K_p}e(g, g, ..., g)^{K_pb_{i, u_i}/k_i}} = 
+\frac{1}{e(g, g..., g)^{K_p}e(g, g, ..., g)^{qb_{i, v_i}}}\]
+
+We will now have now 2 cases:
+\begin{enumerate}
+\item If $V \geq U$ then $K_p$ is a multiple of $p_1p_2...p_n$, thus $K_p\ \equiv \ 0\ mod\ P\Rightarrow\ \\ e(g, g, ..., g)^{K_p} = 1$
+First we will compute the following components used in decryption:
+\begin{align*}
+B_i = e(e_1, e_2, ..., e_{i-1}, g, e_{i+1}, ..., e_n) \\
+D_i = e(e_1, e_2, ..., e_{i-1}, d_i, e_{i+1}, ..., e_n)\\
+F_i = e(e_1, e_2, ..., e_{i-1}, f_i, e_{i+1}, ..., e_n)
+\end{align*}
+
+Then, we have that
+\begin{gather}
+\frac{B_i}{D_i} = \frac{1}{e(g, g, ..., g)^{a_i}}\\
+\frac{B_i}{F_i} = \frac{1}{e(g, g, ..., g)^{b_i}}\\
+(1) (2) \Rightarrow \begin{cases}
+\displaystyle
+\prod{\frac{B_i}{D_i}} = 
+(\prod{e(g, g, ..., g)^{a_i})^{-1}} = 
+(e(g, g, ..., g)^{a_1+a_2+...+a_n})^{-1} \\
+\displaystyle
+\prod{\frac{B_i}{F_i}} = 
+(\prod{e(g, g, ..., g)^{b_{i, v_i}})^{-1}} = 
+(e(g, g, ..., g)^{b_{1, v_1}+...+b_{n, v_n}})^{-1}
+\end{cases} \\
+\Rightarrow 
+C*\frac{B_1B_2...B_n}{D_1D_2...D_n}\left(\frac{B_1B_2...B_n}{F_1F_2...F_n}\right)^{sk_U} = \\
+= M\cdot  \frac{e(g,.., g)^K \cdot e(g, g..., g)^{a_1 + a_2 + ...+a_n}}{e(g, g, ..., g)^{a_1 + a_2 + ... + a_n} \cdot \left( e(g, ..., g)^{b_{1, u_1}+...+b_{n, u_n}} \right) ^ {sk_U}} =\\
+= M\cdot \frac{e(g,.., g)^K }{\left( e(g, ..., g)^{b_{1, v_1}+...+b_{n, v_n}} \right) ^ {sk_V}} =\\ 
+= M\cdot \frac{e(g,.., g)^K }{\left( e(g, ..., g)^{B_V} \right) ^ {sk_V}} 
+= M\cdot \frac{e(g,.., g)^K }{e(g, ..., g)^{B_v \cdot {sk_V}}}
+= M\cdot \frac{e(g,.., g)^K }{e(g, ..., g)^K} = M
+\end{gather}
+- if $b_i < x_i$ then $K_p$ is a random number $\Rightarrow\ e(g, g, ..., g)^{K_p}$ is also random, which means we cannot decrypt correctly in this case.
+
+\item If $V < U$ then $K_p$ has a random value, and we cannot decrypt the message.
+
+\subsubsection{Security}
+
+We will prove the security of our system, using the two games presentes in \textit{Section 2.6}: \textit{Message Hiding} and \textit{Index Hiding}.
+
+\textbf{Game 1 - Message Hiding}
+
+We have our messages $M_0$ and $M_1$, both encrypted by user $u$. This is how the cyphertexts associated with them look (note that we need only the $C$ component of the cyphertext, as the others do not depend on the message to be encrypted):
+
+\[C_0 = M_0 \cdot e(g, g..., g)^{a_1+a_2+...+a_n} \cdot e(g, g..., g)^K \]
+\[C_1 = M_1 \cdot e(g, g..., g)^{a_1+a_2+...+a_n} \cdot e(g, g..., g)^K \]
+
+Let $T = e(g, g..., g)^{a_1+a_2+...+a_n} \cdot e(g, g..., g)^K $.
+Our ecuations become:
+
+\[C_0 = M_0 \cdot T,\ \ \ C_1 = M_1 \cdot T\]
+
+This is trivial?
+
+\textbf{Game 2 - Index Hiding}
+
+In this game, the adversary must distinguish between index $i$ ans $i + 1$, knowing  all $sk_u$, $u \neq i$.
+
+The challenger encrypts the message $M$ with one of the secret keys of users $i$ or $i + 1$. The adversary must guess which secret key was used to encrypt. The two cyphertexts vould look like this:
+
+
+\[sk_i: \quad 
+C_0 = M \cdot e(g, g..., g)^{a_1+a_2+...+a_n} \cdot e(g, g..., g)^qK 
+\]
+\[ e_{i, u_i} = g^{k_{i, u_i}} \]
+\[ d_{i, u_i} = g^{k_{i, u_i}} g^{a_i} \]
+\[ f_{i, u_i} = g^{k_{i, u_i}} g^{qb_{i, u_i}} \]
+
+\[sk_{i+1}: \quad 
+C_1 = M \cdot e(g, g..., g)^{a'_1+a'_2+...+a'_n} \cdot e(g, g..., g)^K\]
+\[ e'_{i, u_i} = g^{k'_{i, u_i}} \]
+\[ d'_{i, u_i} = g^{k'_{i, u_i}} g^{a'_i} \]
+\[ f'_{i, u_i} = g^{k'_{i, u_i}} g^{q'b_{i, u_i}} \]
+
+Note that for the second encryption (with user's $i+1$ secret key) we use different vectors $a$, $k$ (denoted here $a'$ and $k'$). This implies also changes in $e$, $d$, and $f$. Also, in the second case it is used a different parameter $q$ (denoted $q'$).
+
+
+\end{enumerate}
+\subsection{Complexity Analysis}
+
+
+We will analyze each algorithm regarding time and space complexity.
+
+
+
+First, the \textit{setup} algorithm provides uses $O(n) = O(log(N))$ space and time. It generates the vectors $r, r', b$, each of them containing $O(n)$ elements.
+
+\bigskip
+The \textit{encryption} algorithm generates the vectors $D$ and $F$. Each of them has $n$ elements, and for each element we have $O(n)$ time complexity for computing it. It results a total space complexity of $O(n) = O(log(N))$ and $O(n^2) = O(log^2(N))$ time complexity.
+
+\bigskip
+The \textit{decryption} algorithm needs to compute the $B$ vector, which results in $O(n)$ space, $O(n^2)$ time. Also, computing $C*\frac{B_1B_2...B_n}{D_1D_2...D_n}(\frac{B_1B_2...B_n}{F_1F_2...F_n})^{sk_U}$ needs $O(n^2)$ time. This results in a overall complexity for decryption of $O(n)$ (equivalent to $O(log(N))$) space, $O(n^2)$(equivalent to $O(log^2(N))$) time 
+
+\bigskip
+Overall, we can observe that the cyphertext size is $O(log(N))$ complexity, and the overall time complexity for decryption and encryption is $O(log^2(N))$ which is an improvement to the present schemes.
+
+
+\subsection{Extensions}
+There are a few possible extensions or modifications which could add benefits or more security to the scheme. We will briefly describe a few of them below.
+
+\bigskip
+One of the possible extensions of this model could be generating a new security vector for each user, or for each encryption. (Replacing the current vector $a$ which is generated once in the setup and then used for all users).
+
+\bigskip
+Another interesting modification will be replacing the multilinear map with a bilinear map. The purpose of this change is that bilinear maps are more secure than multilinear maps. A starting point could be replacing equations like: 
+\[e(g^{a_1}, g^{a_2}, .., g^{a_n}) = e(g, g..., g)^{a_1a_2...a_n}\]
+with 
+\[e(g^{a_1}, e(g^{a_2}, ..,e(g^{a_{n-1}} g^{a_n})) ) = e(g, g)^{a_1a_2...a_n}\]
+
+\bigskip
+Another possible extension could be modifying the current scheme to support subset queries.
+
+%TODO COMPLETEAZA AICI
+% cu mai mult scris
+%
+%
+
+
+\subsection{Implementation}
+
+In this section we will describe implementation details of the scheme.
+
+\bigskip
+\textit{$setup_{PKBLE}(N)$:}\\
+This is the most difficult part of our scheme implementation. We face two important problems here: 
+
+\begin{itemize}
+\item \textbf{generating the group $G$ and the n-multilinear map $e$}: This is difficult because most of the proposed methos for generating multilinear maps are cracked, or not secure enough.
+%TODO reformuleaza asta
+
+\item \textbf{generating vector $b$}: If we look close into the scheme, we observe that for any user $U$, the folowing sum $B_U = b_{1, u_1} + b_{2, u_2} + ... + b_{n, u_n}$ must be invertible in the group $G$. (as $sk_U = K\cdot B_U^{-1}$)
+\end{itemize}
+
+For generating our multilinear map, we propose the model presented in \cite[??]. (detalii despre diverse scheme de generare a aplicatiilor multilineare?)
+
+\bigskip
+
+
+For the second tricky part of our implemntation, generating the vector $b$, 
+we propose two methods. For both of them we suppose that we work in our system with $N \approx 10^9$ users, which means $n = log(10^9) \approx 30$. Note that this is an extreme case, as for such numbers, it will require great computing power, as the setup function requires $O(N)$ time, because it needs to generate every key for it's users.
+
+
+\bigskip
+\textbf{Method 1}
+
+One approach will be to randomly generate $b$. We will show below that the probability that generating the numbers in such manner has a high probability of succes. The algorithm can be rerun until a valid vector is found. We will show that the expected number of runs is small.
+
+\bigskip
+To find out the probability of generating a sum which is not coprime with $P$ is similar to the probability of choosing $N$ numbers such that the sum is coprime with $P$. 
+
+\bigskip
+This probability for one random number to be coprime with $P$ is: \[
+\frac{\phi(P)}{P} = \frac{\displaystyle \prod_{i=0}^n (p_i - 1)}{\displaystyle \prod_{i=0}^n p_i}\]
+\bigskip
+\textbf{Method 2}
+
+For the first $n-1$ users, generate complete random values for the vector $b$. We will generate then tow values for the last element of the vector $b$ (We remind you that vector $b$ is a vector of pairs)
+
+We then generate all $w=2^{n-1}$ possible combinations that can be obtained from the vector $b$: $c_1, c_2, ... c_w$.
+Now, for each $p_i$ in $p_1,p_2, ..., p_n$ we create a set of remainders, $Sp_i$, which initially is empty. Then, for each $c_i$ and $p_j$ we add to $Sp_j$ the value $c_i \mod p_j$
+
+\bigskip
+We them choose randomly $2n$ numbers: $r_{10}, r_{11}, ... r_{n0}, r_{n1}$ such that $r_{ij} \notin Sp_i$. Then we need to generate $b_{n,0}$ and $b_{n, 1}$ such that the following constrains are met:
+
+\[b_{1,w} \equiv r_{1, w} \mod p_1\]
+\[b_{2,w} \equiv r_{2, w} \mod p_2 \]
+\[...\]
+\[b_{n,w} \equiv r_{n, w} \mod p_1 \]
+for $w \in \{0, 1\}$.
+
+
+\bigskip
+Finally, using CRT we can compute our 2 ramining values.
+This approach assures an answer on the first run of the algorithm.
+
+\bigskip
+$encryption(M, u)$:
+For the $encryption$ method, we only need to generate the array $a$ (using a secure random generator) and compute the components of the cyphertext: $C$, $k$, $d$, $e$, $f$.
+
+
+\bigskip
+$decryption(u, (k, C, e, d, f))$:
+For the \textit{decryption} method, the implementation is trivial. It require just the computation of 
+\[C\cdot \frac{B_1B_2...B_n}{D_1D_2...D_n}\left(\frac{B_1B_2...B_n}{F_1F_2...F_n}\right)^{sk_U}\]
+
+%TODO more formal proof
+
+\newpage
+
+\section{Conclusions}
+
+Our system modelates a PKBLE system with $O(log(N))$ cyphertext size, with the help of which we can achieve a SE-system with comparison queries with the same cyphertext size complexity.
+
+We can see that our system improves the previous results regarding comparison queries in SE schemes. The previous systems used $O(\sqrt{N})$ size cyphertexts. Also, it remains open to a few extensions: 
+\begin{itemize}
+\item create a new system, based on the one presented in this paper but which is using bilinear maps instead of multilinear maps
+\item extend the system to support more complex queries (subset, conjunctions, etc.)
+\end{itemize}
+
+The system's drawback is that it is based on multilinear maps, which are cryptographic primitives for which there isn't yet a secure model for generating them. However, multilinear maps are a subject of great interest and many researchers are working on finding a secure implementation for them.
+
+
+\newpage
+\section{Bibliography}
+\begin{thebibliography}{9}
+
+\bibitem{SoWP} 
+Dawn Xiaodong Song, David Wagner, Adrian Perrig.
+\textit{Practical Techniques for Searches on Encrypted Data}. In
+\textit{IEEE Symp. on Security and Privacy, 2000}, 2000.
+
+
+\bibitem{bowa} 
+Dan Boneh, Brent Waters. 
+\textit{Conjunctive, Subset and Range Queries on Encrypted data}.
+Vadhan S.P. (eds) Theory of Cryptography. TCC 2007. Lecture Notes in Computer Science, vol 4392, Springer, Berlin, Heidelberg, 2007.
+ 
+
+\bibitem{traitor} 
+Dan Boneh, Amy Salai, Brent Waters. 
+\textit{Fully collusion resistant traitor tracing with short cyphertexts and private keys}. In
+\textit{Eurocrypt '06}, 2006.
+  
+  
+\bibitem{subset} 
+Dan Boneh, Brent Waters. 
+\textit{A Fully Collusion Resistant Broadcast, Trace and Revoke System}. In
+\textit{ACM Conference on Computer and Communication Security
+(CCS)}, 2006.
+
+  
+ 
+  
+ \end{thebibliography}
+ 
+\newpage
+\section*{drafts}
+ Mostly useless stuff, but I don't want to delete it yet...
+
+
+\textit{$genToken_{AI}(P)$:} We consider a predicate $P$ given as input ($P$ can be a index, meaning that we must decrypr everything greater or equal to that index.). We will further refer to this index as 
+
+\bigskip
+
+\bigskip
+$encryption(M, u)$:
+
+{\color{red}
+For the \textit{encryption} method, we need to generate each time a set of random exponents $1_a, ..., a_n$, with the condition that $gcd(a_1+...+a_n, p_0p_1...p_n) = 1$. This can be done by random generating the first $n - 1$ exponents, and for the last one, we take care that the required condition is satisfied.
+}
+
+\subsection*{Applications}
+
+Using this approach, we can make comparision queries over encrypted data. \\
+
+
+search a mail in an ecnrypted e-mail database over the date (where date is stored as a number). \\
+
+Searching by sorted numeric fields (dates, age, ).\\
+
+prefix matching - we can search for words that have some prefix (larger than $[prefix]000000$ and smaller than $[prefix]zzzzzzz$, where $0$ is the smallest character, number available and $z$ the greatest).
+
+
+\end{document}
